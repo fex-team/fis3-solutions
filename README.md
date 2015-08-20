@@ -21,9 +21,19 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
 当选定某一种模板引擎后，需要扩展一些必要的标签（语法）以便于资源加载引用、自动完成性能优化、支撑模块化开发和组件化开发等。
 
-之所以需要扩展新语法最主要的原因是不污染原有 html 标签的语义。
+之所以需要扩展新语法最主要的原因是不污染原有 html 标签的语义。因为各种模板引擎的语法各不相同，以下语法示例仅作为参考。
 
-* `import` 用来加载某一静态资源。除了加载自己本身外，还应该进一步分析该资源依赖表，递归加载所有依赖。这也是对 fis [三种语言能力](http://fis.baidu.com/fis3/docs/user-dev/extlang.html)中[声明依赖](http://fis.baidu.com/fis3/docs/user-dev/require.html)能力的落实。
+* `import("静态资源ID")` 用来加载某一静态资源。除了加载自己本身外，还应该进一步分析该资源依赖表，递归加载所有依赖。这也是对 fis [三种语言能力](http://fis.baidu.com/fis3/docs/user-dev/extlang.html)中[声明依赖](http://fis.baidu.com/fis3/docs/user-dev/require.html)能力的落实。
+
+  示例
+
+  ```html
+  ...
+  @import("widget/ui/jquery/jquery.js")
+  @import("widget/sidebar/sidebar.js")
+  ...
+  ```
+* ``
 
 
 ### 线下调试

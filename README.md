@@ -23,14 +23,34 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
 之所以需要扩展新语法最主要的原因是不污染原有 html 标签的语义。因为各种模板引擎的语法各不相同，以下语法示例仅作为参考。
 
-* `import("静态资源ID")` 用来加载某一静态资源。除了加载自己本身外，还应该进一步分析该资源依赖表，递归加载所有依赖。这也是对 fis [三种语言能力](http://fis.baidu.com/fis3/docs/user-dev/extlang.html)中[声明依赖](http://fis.baidu.com/fis3/docs/user-dev/require.html)能力的落实。
+* `import("静态资源ID")` 用来加载某一静态资源，通过 `静态资源ID` 指定。
+
+  fis 中所有资源都可以根据配置随意部署到各种目录，或者 cdn 服务器上，最终产出的路径是相对不固定。对于开发人员来说，最好无需最终产出的路径，只需关注该资源 `静态资源ID` 即可。`静态资源ID` 是相对固定的，他的值为该资源在项目中的绝对路径去掉开头的斜线`/`。如：
+
+  * `static/js/mod.js`
+  * `static/css/global.css`
+  * `widget/header/header.tpl`
+
+  如果该项目设置了 `namespace`。
+
+  ```js
+  fis.set('namespace', 'common');
+  ```
+
+  那么`静态资源ID`会变成 `${命名空间}/${资源在该项目中绝对路径}`，如：
+
+  * `common:static/js/mod.js`
+  * `common:static/css/global.css`
+
+
+  除了加载资源本身外，还应该进一步分析该资源依赖表，递归加载所有依赖。这也是对 fis [三种语言能力](http://fis.baidu.com/fis3/docs/user-dev/extlang.html)中[声明依赖](http://fis.baidu.com/fis3/docs/user-dev/require.html)能力的落实。
 
   示例
 
   ```html
   ...
   @import("widget/ui/jquery/jquery.js")
-  @import("widget/sidebar/sidebar.js")
+  @import("static/sidebar/sidebar.css")
   ...
   ```
 * ``

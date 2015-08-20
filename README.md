@@ -138,7 +138,7 @@ redirect \/jump /page/about.tpl
 
   ```json
   {
-    "data" => [
+    "data": [
       {
         "id": 1,
         "name": "foo"

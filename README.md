@@ -93,6 +93,22 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
     ```
   2. `@script('远程 js 地址')@endscript` 用来加载线上 js。
   3. `@script('资源ID')@endscript` 等价于 `@import('资源ID')`
+* `@style()@endstyle` 
+
+  与`html` 中 `<style></style>` 语法类似, 主要区别在于，通过此语法加载的 `css`, 会被收集，无论在模板什么位置使用，最终都会被合并在页面头部统一输出，自动性能优化。支持以下三种用法。
+
+  1. `@style()css content@endstyle`
+
+    ```php
+    <div class="xxx">dom</div>
+    @style()
+    div.xxx {
+      color: red;
+    }
+    @endstyle
+    ```
+  2. `@style('远程 css 地址')@endstyle` 用来加载线上 css。
+  3. `@style('资源ID')@endstyle` 等价于 `@import('资源ID')`
 
 ### 线下调试
 

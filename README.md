@@ -117,9 +117,9 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
   3. `@style('资源ID')@endstyle` 等价于 `@import('资源ID')`
 * `@framework('资源ID')`
   
-  指定前端运行时框架，用来支撑 CommonJs 或者 AMD 模块化开发。如果项目采用 `CommonJs` 规范请使用 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js), 如果项目采用 AMD 规范请使用 `require.js`、`esl.js` 或者其他 AMD Loader.
+  指定前端运行时框架，用来支撑 CommonJs 或者 AMD 模块化开发。如果项目采用 `CommonJs` 规范请使用 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js), 如果项目采用 AMD 规范请使用 `require.js`、`esl.js` 或者其他 AMD Loader。
 
-  后端框架需要根据不同的方案对异步 js 模块，生成映射表和依赖表（AMD 方案不会生成依赖表）。
+  后端框架需要根据不同的方案对异步 js 模块，考虑到资源加 md5 戳和 cdn 部署功能，需要生成相应的映射表和依赖表（AMD 方案不会生成依赖表）。
 
 
   

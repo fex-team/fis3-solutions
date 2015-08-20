@@ -73,7 +73,20 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
   </div>
   ...
   ```
-* `@script()@endscript`
+* `@script()@endscript` 与`html` 中 `<script></script>` 语法类似, 主要区别在于，通过此语法加载的 `script`, 会被收集，无论你在模板什么位置使用，最终都会被合并并在页面页脚处统一输出，自动性能优化。 支持三种语法。
+
+  * `@script()js content@endscript`
+
+    ```php
+    <div class="xxx">dom</div>
+    @script()
+    require(['./script.js'], function(init) {
+      init('.xxx');
+    });
+    @endscript
+    ```
+  * `@script('远程 js 地址')@endscript` 用来加载线上 js。
+  * `@script('资源ID')@endscript` 等价于 `@import('资源ID')`
 
 ### 线下调试
 

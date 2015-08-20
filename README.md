@@ -67,6 +67,13 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
   此类路径，需要借助编译工具，最终替换成`静态资源ID`。
 * `url("静态资源ID")` 用来输出静态资源的访问路径，并不加载该资源。
 
+  ```php
+  ...
+  <div data-src="@url('common:static/images/icon.png')">
+  </div>
+  ...
+  ```
+* `@script()@endscript`
 
 ### 线下调试
 

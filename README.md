@@ -42,6 +42,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
   * `common:static/js/mod.js`
   * `common:static/css/global.css`
 
+  fis 编译工具，会把项目中的静态资源生成一张静态资源表存放在 `map.json` 文件中，该表通过 `静态资源ID` 标识了所有静态资源的类型、最终产出路径和依赖信息。当通过 `import` 加载某一资源时，程序需要读取该表，将真实的产出路径输出。
 
   除了加载资源本身外，还应该进一步分析该资源依赖表，递归加载所有依赖。这也是对 fis [三种语言能力](http://fis.baidu.com/fis3/docs/user-dev/extlang.html)中[声明依赖](http://fis.baidu.com/fis3/docs/user-dev/require.html)能力的落实。
 

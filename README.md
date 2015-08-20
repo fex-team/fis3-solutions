@@ -50,7 +50,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   示例
 
-  ```blade
+  ```php
   ...
   @import("widget/ui/jquery/jquery.js")
   @import("static/sidebar/sidebar.css")
@@ -61,7 +61,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   文件：/widget/header/header.tpl
 
-  ```blade
+  ```php
   @import("./header.js")
   @import("/static/js/lib.js")
   ```
@@ -71,7 +71,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   用来输出静态资源的访问路径，并不加载该资源。
 
-  ```blade
+  ```php
   ...
   <div data-src="@url('common:static/images/icon.png')">
   </div>
@@ -124,7 +124,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   此功能主要用来支撑组件化开发，把多个页面中可公用的部分，将 html、js、css 资源组织在同一个目录封装成组件，外部只需通过 `@widget` 引入该组件即可。
 
-  ```blade
+  ```php
   @if(!Auth::guest())
     @widget('/widget/userInfo/userInfo.tpl')
   @endif
@@ -136,7 +136,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   后端框架根据不同的方案对异步 js 模块，考虑到资源加 md5 戳和 cdn 部署功能，需要生成相应的映射表和依赖表（AMD 方案不需要成依赖表）。
 
-  ```blade
+  ```php
   <!DOCTYPE html>
   <html>
   <head>

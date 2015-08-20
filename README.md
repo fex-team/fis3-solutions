@@ -50,7 +50,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   示例
 
-  ```php
+  ```blade
   ...
   @import("widget/ui/jquery/jquery.js")
   @import("static/sidebar/sidebar.css")
@@ -61,7 +61,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   文件：/widget/header/header.tpl
 
-  ```php
+  ```blade
   @import("./header.js")
   @import("/static/js/lib.js")
   ```
@@ -71,7 +71,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   用来输出静态资源的访问路径，并不加载该资源。
 
-  ```php
+  ```blade
   ...
   <div data-src="@url('common:static/images/icon.png')">
   </div>
@@ -115,13 +115,39 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
     ```
   2. `@style('远程 css 地址')@endstyle` 用来加载线上 css。
   3. `@style('资源ID')@endstyle` 等价于 `@import('资源ID')`
+* `@widget('子模板资源ID', localVars)`
+  
+  类似于各种模板引擎中的 `include` 功能，区别在于：
+
+  * 需要支持局部变量传递。
+  * 自动加载模板中依赖的资源。
+
+  此功能主要用来支撑组件化开发，把多个页面中可公用的部分，将 html、js、css 资源组织在同一个目录封装成组件，外部只需通过 `@widget` 引入该组件即可。
+
+  ```blade
+  @if(!Auth::guest())
+    @widget('/widget/userInfo/userInfo.tpl')
+  @endif
+  ```
+
 * `@framework('资源ID')`
   
   指定前端运行时框架，用来支撑 CommonJs 或者 AMD 模块化开发。如果项目采用 `CommonJs` 规范请使用 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js), 如果项目采用 AMD 规范请使用 `require.js`、`esl.js` 或者其他 AMD Loader。
 
   后端框架根据不同的方案对异步 js 模块，考虑到资源加 md5 戳和 cdn 部署功能，需要生成相应的映射表和依赖表（AMD 方案不需要成依赖表）。
 
+  ```blade
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title></title>
+    @framework('/static/mod.js')
+  </head>
+  <body>
 
+  </body>
+  </html>
+  ```
   
 
 

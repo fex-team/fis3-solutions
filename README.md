@@ -137,19 +137,18 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
   后端框架根据不同的方案对异步 js 模块，考虑到资源加 md5 戳和 cdn 部署功能，需要生成相应的映射表和依赖表（AMD 方案不需要成依赖表）。
 
   ```php
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <title></title>
-    @framework('/static/mod.js')
-  </head>
-  <body>
-
-  </body>
-  </html>
+  ...
+  @framework('/static/mod.js')
+  ...
   ```
-  
+* `@placeholder('类型')` 
 
+  后端框架需要把收集的 js 和 css 统一输出，同时还需输出前段框架连接已经异步 js 模块资源表信息，那么具体输出在什么位置需要通过占位符来控制。
+
+  * `@placeholder('js')` 用来控制收集到的 js 输出位置，一般都放在 body 前面。
+  * `@placeholder('css')` 用来控制收集到的 css 输出位置，一般都放在 head 前面。
+  * `@placeholader('framework')` 用来控制前端框架 js 输出位置。
+  * `@placeholader('resource_map')` 用来控制异步 js 模块资源表输出位置。
 
 ### 线下调试
 

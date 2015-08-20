@@ -87,7 +87,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
     <div class="xxx">dom</div>
     @script()
     require(['./script.js'], function(init) {
-      init('.xxx');
+      init('div.xxx');
     });
     @endscript
     ```

@@ -106,12 +106,30 @@ redirect \/jump /page/about.tpl
 
   假定`假数据文件`全部存放在 `mock` 文件夹下面，页面文件全部存放在 `page` 目录下面，那么当访问 `page/a/b/c.tpl` 页面时，应当按以下顺序尝试加载 `假数据`，并将所有数据按顺序合并起来，后加载的数据覆盖先加载的数据，采用类似 `jQuery.extend` 的合并策略。
 
+  * /mock/global.json
   * /mock/page.json
   * /mock/page/a.json
   * /mock/page/a/b.json
   * /mock/page/a/b/c.json
 
-  动态`假数据`文件应当也有同样的加载策略。
+  动态`假数据`文件（通过动态脚本提供的数据文件）应当也有同样的加载策略。
+
+  如果`静态假数据`和`动态假数据`文件都同时存在，应当都同时加载，且 `动态假数据` 后加载，使其数据优先级更高。
+
+  `假数据`存放目录规则除了能按页面在项目中的路径来之外，还需支持按该页面的访问地址来存放。
+
+  举个例子，如上面例子中的页面 `page/a/b/c.tpl` 如果用户配置了 url rewrite.
+
+  ```
+  rewrite \/clean\/url$ /page/a/b/c.tpl
+  ```
+
+  那么当页面通过 `http://ip:port/clean/url` 访问的时候，应当除了按页面存放路径规则的`假数据`被加载外，还需按同样的策略加载以下`假数据`。
+
+  * /mock/clean.json
+  * /mock/clean/url.json
+
+  之所以把`假数据`能按各种目录存放，主要是考虑到，页面与页面之间的公用的`假数据`，用户可以根据公用程度选择存放在不同的文件。
 2. **ajax 数据**
 
   可以结合 url rewrite 和静态 json 文件，完全模拟异步 ajax 数据。

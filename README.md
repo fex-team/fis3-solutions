@@ -115,7 +115,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
     ```
   2. `@style('远程 css 地址')@endstyle` 用来加载线上 css。
   3. `@style('资源ID')@endstyle` 等价于 `@import('资源ID')`
-`@framework('资源ID')`
+  * `@framework('资源ID')`
   
   用来指定前端运行时框架，用来支撑 CommonJs 和 AMD 模块化开发。如果项目采用 `CommonJs` 规范请使用 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js), 如果项目采用 AMD 规范请使用 `require.js`、`esl.js` 或者其他 AMD Loader.
 

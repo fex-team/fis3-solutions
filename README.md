@@ -313,6 +313,27 @@ redirect \/jump /page/about.tpl
   当然如果是动态脚本，返回的数据类型可以由脚本编写者定，可以是 `xml` 也可以是 `jsonp` 等等。
 
 ### 模块化开发
+
+一个完整的解决方案，应该至少支持满足一种规范的模块化开发，CommonJs 规范或者 AMD 规范。
+
+对于此功能的支持主要集中在编译和后端运行时框架部分，以下将详细说明如何结合 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js) 支持 CommonJs 规范的模块化开发。
+
+#### 编译部分
+
+编译部分主要负责两部分工作。
+
+1. 分析 `require` 用法，把分析到依赖信息写入到静态资源表里面。
+2. 将模块化的 js 用 amd 包裹如：
+
+  源码：
+
+  ```
+  module.exports = function(a, b) {
+    return a + b;
+  }
+  ```
+
+
 ### 组件化开发
 ### 目录规范
 

@@ -322,17 +322,32 @@ redirect \/jump /page/about.tpl
 
 编译部分主要负责两部分工作。
 
-1. 分析 `require` 用法，把分析到依赖信息写入到静态资源表里面。
+1. 分析 `require` 用法，把分析到依赖信息写入到静态资源表里面，并产出供后端运行时框架读取。
 2. 将模块化的 js 用 amd 包裹如：
 
   源码：
 
-  ```
+  ```js
   module.exports = function(a, b) {
     return a + b;
   }
   ```
 
+  经过编译后为：
+
+  ```js
+  define('资源ID', function(require, exports, module) {
+
+    module.exports = function(a, b) {
+      return a + b;
+    }
+
+  });
+  ```
+
+  此功能可以直接使用插件 [fis3-hook-commonjs](https://github.com/fex-team/fis3-hook-commonjs)，即可。
+
+#### 后端框架部分
 
 ### 组件化开发
 ### 目录规范

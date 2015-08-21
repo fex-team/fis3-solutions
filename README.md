@@ -166,8 +166,8 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
 
   * `@placeholder('js')` 用来控制收集到的 js 输出位置，一般都放在 body 前面。
   * `@placeholder('css')` 用来控制收集到的 css 输出位置，一般都放在 head 前面。
-  * `@placeholader('framework')` 用来控制前端框架 js 输出位置。
-  * `@placeholader('resource_map')` 用来控制异步 js 模块资源表输出位置。
+  * `@placeholder('framework')` 用来控制前端框架 js 输出位置。
+  * `@placeholder('resource_map')` 用来控制异步 js 模块资源表输出位置。
 
 ### 线下调试
 
@@ -367,6 +367,23 @@ redirect \/jump /page/about.tpl
   此功能可以直接使用插件 [fis3-hook-commonjs](https://github.com/fex-team/fis3-hook-commonjs)，即可。
 
 #### 后端框架部分
+
+后端框架部分主要包括以下工作。
+
+1. 记录用户通过 `@framework('/static/js/mod.js')` 指定的前端加载框架。
+2. 收集页面后端渲染过程中收集的所有 js 资源，递归分析其依赖。
+3. 在 `@placeholder('framework')` 位置将设置 framework 输出。
+4. 在 `@placeholder('resource_map')` 位置将分析到的异步 js 模块信息组织成 js 输出。
+
+  ```js
+  require.resourcemap({
+    res: {...},
+    pkg: {...}
+  })
+  ```
+5. 把收集到的 js 按顺序在 `@placeholder('js')` 处输出。
+  
+  这里包含了所有同步依赖，也就是说 mod.js 并不负责同步 js 的加载，而是靠后端运行时框架分析静态资源表，在页面中直接输出 `<script>` 的方式加载的。
 
 ### 组件化开发
 ### 目录规范

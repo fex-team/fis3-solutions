@@ -134,7 +134,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
     ```
   2. `@style('远程 css 地址')@endstyle` 用来加载线上 css。
   3. `@style('资源ID')@endstyle` 等价于 `@import('资源ID')`
-* `@widget('子模板资源ID', localVars)`
+* `@widget('子模板资源ID'[, localVars])`
   
   类似于各种模板引擎中的 `include` 功能，区别在于：
 

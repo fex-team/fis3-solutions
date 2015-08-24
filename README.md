@@ -342,6 +342,45 @@ redirect \/jump /page/about.tpl
 编译部分主要负责两部分工作。
 
 1. 分析 `require` 用法，把分析到依赖信息写入到静态资源表里面，并产出供后端运行时框架读取。
+
+  如
+
+  源码 module/a.js
+
+  ```js
+  var b = require('./b.js');
+  var c = require('./c.js');
+
+  module.exports = function() {
+    console.log('sample');
+  };
+  ```
+
+  产出的静态资源表：
+
+  ```json
+  {
+    "res": {
+      "module/a.js": {
+        "uri": "/static/module/a.js",
+        "type": "js",
+        "deps": [
+          "module/b.js",
+          "module/c.js"
+        ]
+      },
+      "module/b.js": {
+        "uri": "/static/module/b.js",
+        "type": "js"
+      },
+      "module/c.js": {
+        "uri": "/static/module/c.js",
+        "type": "js"
+      },
+    },
+    "pkg": {}
+  }
+  ```
 2. 将模块化的 js 用 amd 包裹如：
 
   源码：
@@ -364,7 +403,7 @@ redirect \/jump /page/about.tpl
   });
   ```
 
-  此功能可以直接使用插件 [fis3-hook-commonjs](https://github.com/fex-team/fis3-hook-commonjs)，即可。
+  此功能已在插件 [fis3-hook-commonjs](https://github.com/fex-team/fis3-hook-commonjs)中支持，新解决方案只需绑定此插件即可。
 
 #### 后端框架部分
 

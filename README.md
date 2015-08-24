@@ -412,9 +412,9 @@ redirect \/jump /page/about.tpl
 后端框架部分主要包括以下工作。
 
 1. 记录用户通过 `@framework('/static/js/mod.js')` 指定的前端加载框架。
-2. 收集页面后端渲染过程中收集的所有 js 资源，递归分析其依赖。
-3. 在 `@placeholder('framework')` 位置将设置 framework 输出。
-4. 在 `@placeholder('resource_map')` 位置将分析到的异步 js 模块信息组织成 js 输出。
+2. 收集页面后端渲染过程中收集的所有 js 资源，读取静态资源表，递归分析其依赖。
+3. 在 `@placeholder('framework')` 位置将设置前端加载框架输出。
+4. 在 `@placeholder('resource_map')` 位置将分析到的异步 js 模块信息组织成 js 数据输出。
 
   ```js
   require.resourcemap({
@@ -429,6 +429,18 @@ redirect \/jump /page/about.tpl
   异步依赖则是 mod.js 借助后端框架生成的 resource map 表，在运行时分析出资源路径和依赖完成加载的。
 
 ### 组件化开发
+
+在 fis 解决方案中，多个页面之间公用的部分可以封装成一个独立的组件，该组件包含后端模板片段、可选的 js 文件和可选的 css 文件。
+
+```
+└── nav
+    ├── nav.tpl
+    ├── nav.css
+    └── nav.js
+```
+
+页面模板中通过 `@widget('组件模板'[, 局部变量])`能在相应的位置引用组件，并允许传入不同的变量, 子模板可以根据变量渲染不同的结果。
+
 ### 目录规范
 
 

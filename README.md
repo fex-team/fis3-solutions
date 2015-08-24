@@ -335,7 +335,7 @@ redirect \/jump /page/about.tpl
 
 一个完整的解决方案，应该至少支持满足一种规范的模块化开发，CommonJs 规范或者 AMD 规范。
 
-
+模块化开发主要有利于代码拆分管理，用来代替传统的命名空间管理方式。
 
 对于此功能的支持主要集中在编译和后端运行时框架部分，以下将详细说明如何实现结合 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js) 支持 CommonJs 规范的模块化开发。
 

@@ -321,6 +321,13 @@ redirect \/jump /page/about.tpl
 
   除了 url rewrite 和 静态 json 文件结合外，还需支持 url rewrite 和动态脚本结合，满足动态数据模拟的需求。
 
+  / server.conf
+
+  ```
+  rewrite ^\/api\/now /mock/ajax/api/now.php
+  ```
+  /mock/ajax/api/now.php
+
   ```php
   {
     "data": <?php echo time();?>,
@@ -453,7 +460,7 @@ redirect \/jump /page/about.tpl
 
 ### 目录规范
 
-
+制定目录规范可以降低项目的维护成本。
 
 
 

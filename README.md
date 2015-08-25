@@ -504,7 +504,11 @@ redirect \/jump /page/about.tpl
 2. 产出的静态资源表文件名有区别。
 
   `map.json` => `common-map.json`
-3. 满足 `commonJs` 规范的模块化 js 包装成 amd 时 采用的 module Id 规范发生变化。
+3. 产出的文件可能需要按 `namespace` 来分目录存放。
+  
+  `static/js/script.js` => `static/common/js/script.js`
+
+4. 满足 `commonJs` 规范的模块化 js 包装成 amd 时 采用的 module Id 规范发生变化。
 
   原来：
 

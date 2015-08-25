@@ -521,6 +521,3 @@ redirect \/jump /page/about.tpl
     // ...
   });
   ```
-
-```
-

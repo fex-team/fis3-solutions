@@ -460,9 +460,28 @@ redirect \/jump /page/about.tpl
 
 ### 目录规范
 
-制定目录规范可以降低项目的维护成本。
+制定目录规范可以降低项目的维护成本，所以每个解决方案应当预设一个合理的目录规范。以下目录规范仅作为参考。
 
+```
+├── page
+│   └── index.tpl
+├── static
+│   ├── css
+│   ├── img
+│   └── js
+├── widget
+│   ├── nav
+│   └── sidebar
+├── mock
+│   └── sample.json
+└── fis-conf.js
+```
 
+* `page` 目录用来存放页面入口模板文件。
+* `static` 目录用来存放各种静态资源，如 css、图片、swf、fonts 和 js 等等。(PS: **js** 目录主要用来存放非模块化的 js，模块化 js 主要存放在 widget 目录。)
+* `widget` 目录存放各类组件，组件中 js 都采用模块化方式开发。
+* `mock` 用来存放各种假数据模拟文件。
+* `fis-conf.js` 项目编译配置文件。
 
 ### 后端运行时框架
 ### 子站点拆分

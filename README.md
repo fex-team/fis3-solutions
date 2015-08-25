@@ -496,7 +496,7 @@ redirect \/jump /page/about.tpl
 
 当 fis 项目设置了 `namespace` 后，实际上是一个 `子站点` 的角色，主要有以下区别:
 
-（下面的例子都用 `common` 作为名字空间）
+（下面的例子都以 `common` 作为名字空间的值）
 
 1. `静态资源ID` 规则发生了变化，在原来规则的基础上，以 `namespace` 作为前缀。
   

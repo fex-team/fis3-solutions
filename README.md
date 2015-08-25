@@ -502,10 +502,20 @@ redirect \/jump /page/about.tpl
   
   `static/js/mod.js` => `common:static/js/mod.js`
 
-  `子站点` 之间可以通过 `静态资源ID` 运行期相互引用。
+  `子站点` 之间可以通过 `静态资源ID` 相互引用。
+
+  如：在 home 子站点下使用 common 下面的 js.
+
+  ```js
+  var myFn = require('common:widget/comp/a.js');
+
+  myFn('div.selector');
+  ```
 2. 产出的静态资源表文件名有区别。
 
   `map.json` => `common-map.json`
+
+  对于后端框架来说，需要清楚此规则，根据 `资源ID` 加载相应的表。
 3. 产出的文件可能需要按 `namespace` 来分目录存放。
   
   `static/js/script.js` => `static/common/js/script.js`

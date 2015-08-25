@@ -490,5 +490,37 @@ redirect \/jump /page/about.tpl
 
 ### 子站点拆分
 
-随着业务扩展，代码越来越多，会增大项目维护成本，并且让编译工具一次编译时间增长。为了解决此问题，解决方案应当支持子站点拆分能力。即将完整的一个站点拆成多个子站点，每个子站点为一个独立的编译单元，通过设置 `namespace` 来区分，最终将多个子站点产出合并到服务端完成整站的站点构建。
+随着业务扩展，代码越来越多，会增大项目维护成本，并且让编译工具一次编译时间增长。为了解决此问题，解决方案应当支持子站点拆分功能。
+
+即：将完整的一个站点拆成多个 `子站点`，每个 `子站点` 为一个独立的编译单元，通过设置 `namespace` 来区分，最终将多个 `子站点` 产出合并到服务端完成整站的构建。
+
+当 fis 项目设置了 `namespace` 后，实际上是一个 `子站点` 的角色，主要有以下区别:
+
+1. `静态资源ID` 规则发生了变化，在原来规则的基础上，以 `namespace` 作为前缀。
+  
+  `static/js/mod.js` => `comon:static/js/mod.js`
+
+  `子站点` 之间可以通过 `静态资源ID` 运行期相互引用。
+2. 产出的静态资源表文件名有区别。
+
+  `map.json` => `common-map.json`
+3. 满足 `commonJs` 规范的模块化 js 包装成 amd 时 采用的 module Id 规范发生变化。
+
+  原来：
+
+  ```js
+  define('widget/nav/nav', function(require, exports, module) {
+    // ...
+  });
+  ```
+
+  设置 `namespace` 之后 :
+
+  ```js
+  define('common:widget/nav/nav', function(require, exports, module) {
+    // ...
+  });
+  ```
+
+```
 

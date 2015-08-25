@@ -496,6 +496,8 @@ redirect \/jump /page/about.tpl
 
 当 fis 项目设置了 `namespace` 后，实际上是一个 `子站点` 的角色，主要有以下区别:
 
+（下面的例子都用 `common` 作为名字空间）
+
 1. `静态资源ID` 规则发生了变化，在原来规则的基础上，以 `namespace` 作为前缀。
   
   `static/js/mod.js` => `comon:static/js/mod.js`
@@ -507,7 +509,7 @@ redirect \/jump /page/about.tpl
 3. 产出的文件可能需要按 `namespace` 来分目录存放。
   
   `static/js/script.js` => `static/common/js/script.js`
-  
+
   `template/widget/nav/nav.tpl` => `template/common/widget/nav/nav.tpl`
 
 4. 满足 `commonJs` 规范的模块化 js 包装成 amd 时 采用的 module Id 规范发生变化。

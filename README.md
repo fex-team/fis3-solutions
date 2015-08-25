@@ -56,7 +56,7 @@ fis 解决方案是一个基于 fis 编译工具，针对特定后端和特定�
   fis.set('namespace', 'common');
   ```
 
-  那么`静态资源ID`会变成 `${命名空间}/${资源在该项目中绝对路径}`，如：
+  那么`静态资源ID`会变成 `${命名空间}:${资源在该项目中绝对路径}`，如：
 
   * `common:static/js/mod.js`
   * `common:static/css/global.css`

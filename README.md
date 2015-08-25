@@ -500,7 +500,7 @@ redirect \/jump /page/about.tpl
 
 1. `静态资源ID` 规则发生了变化，在原来规则的基础上，以 `namespace` 作为前缀。
   
-  `static/js/mod.js` => `comon:static/js/mod.js`
+  `static/js/mod.js` => `common:static/js/mod.js`
 
   `子站点` 之间可以通过 `静态资源ID` 运行期相互引用。
 2. 产出的静态资源表文件名有区别。

@@ -221,7 +221,7 @@ redirect \/jump /page/about.tpl
 
 #### 数据 mock
 
-数据 mock 分为两块。
+假数据主要包括模板数据和 ajax 异步数据两部分。
 
 1. **模板数据**
 

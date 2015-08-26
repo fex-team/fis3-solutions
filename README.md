@@ -80,13 +80,13 @@ fis 解决方案是一个基于 fis 编译工具，结合特定后端和特定�
   ```
 
   此类路径，需要借助编译工具，在产出给后端程序之前应当被替换成完整的`静态资源ID`。
-* `@url("静态资源ID")` 
+* `@uri("静态资源ID")` 
 
   用来输出静态资源的访问路径，并不加载该资源。
 
   ```php
   ...
-  <div data-src="@url('common:static/images/icon.png')">
+  <div data-src="@uri('common:static/images/icon.png')">
   </div>
   ...
   ```

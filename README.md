@@ -282,7 +282,7 @@ redirect \/jump /page/about.tpl
   rewrite \/clean\/url$ /page/a/b/c.tpl
   ```
 
-  那么当页面通过 `http://ip:port/clean/url` 访问的时候，应当除了按页面存放路径规则的`假数据`被加载外，还需按同样的策略加载以下`假数据`。
+  那么当页面通过 `http://ip:port/clean/url` 访问的时候，应当除了按页面存放路径规则的`假数据`被加载外，还需额外按同样的策略加载以下`假数据`。
 
   * /mock/clean.json
   * /mock/clean/url.json

@@ -149,13 +149,13 @@ fis 解决方案是一个基于 fis 编译工具，结合特定后端和特定�
   
   指定前端运行时框架，用来支撑 CommonJs 或者 AMD 模块化开发。如果项目采用 `CommonJs` 规范请使用 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js), 如果项目采用 AMD 规范请使用 `require.js`、`esl.js` 或者其他 AMD Loader。
 
-  后端框架根据不同的方案对异步 js 模块，考虑到资源加 md5 戳和 cdn 部署功能，需要生成相应的映射表和依赖表（AMD 方案不需要成依赖表）。
-
   ```php
   ...
   @framework('/static/mod.js')
   ...
   ```
+
+  更多信息请查看[模块化开发](#模块化开发)
 * `@placeholder('类型')` 
 
   后端框架需要把收集的 js 和 css 统一输出，同时还需输出前端框架资源路径以及异步 js 模块资源表信息，那么具体输出在什么位置需要支持占位符来控制。

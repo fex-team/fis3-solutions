@@ -494,7 +494,7 @@ console.log(add(1, 2)); // => 3
 /widget/nav/nav.js
 
 ```js
-var $ = require('/widget/libs/jquery.js');
+var $ = require('/widget/lib/jquery.js');
 
 module.exports = function(selector) {
   $(selector).on('click', function() {

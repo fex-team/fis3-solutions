@@ -340,7 +340,25 @@ redirect \/jump /page/about.tpl
 
 模块化开发主要有利于代码拆分管理，用来代替传统的命名空间管理方式。
 
-对于此功能的支持主要集中在编译和后端运行时框架部分，以下将详细说明如何实现结合 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js) 支持 CommonJs 规范的模块化开发。
+如：
+
+/widget/add.js 模块定义
+
+```js
+module.exports = function(a, b) {
+  return a + b;
+};
+```
+
+/page/index.js 模块使用。
+
+```js
+var add = require('/widget/add.js');
+
+console.log(add(1, 2)); // => 3
+```
+
+对于此功能的支持工作主要集中在编译和后端运行时框架两部分，以下将详细说明如何实现结合 [mod.js](https://github.com/fex-team/mod/blob/master/mod.js) 支持 CommonJs 规范的模块化开发。
 
 #### 编译部分
 

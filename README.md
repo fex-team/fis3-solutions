@@ -472,6 +472,95 @@ console.log(add(1, 2)); // => 3
 
 与传统的开发不一样的地方是，这种组织方式把相关的 tpl、js、css 和其他静态资源放在一个文件夹下面维护，可维护性和移植性得到很大提升。
 
+示例：
+
+/widget/nav/nav.tpl
+
+```html
+<div class="nav">
+  <ul>
+    <li><a>Link1</a></li>
+    <li><a>Link2</a></li>
+    <li><a>Link3</a></li>
+  </ul>
+
+  @script()
+  var initNav = require('./nav.js');
+  initNav('div.nav');
+  @endscript
+</div>
+```
+
+/widget/nav/nav.js
+
+```js
+var $ = require('/widget/libs/jquery.js');
+
+module.exports = function(selector) {
+  $(selector).on('click', function() {
+    // ...
+  });
+};
+```
+
+/widget/nav/nav.css
+
+```css
+div.nav {
+  /*样式*/
+}
+```
+
+/page/index.tpl
+
+```php
+<<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+  @framework('/static/js/mod.js')
+  @placeholder('css')
+</head>
+<body>
+<div>
+  @widget('/widget/nav/nav.tpl')
+</div>
+@placeholder('framework')
+@placeholder('resouce_map')
+@placeholder('js')
+</body>
+</html>
+```
+
+产出
+
+```php
+<html>
+<head>
+  <title>demo</title>
+  <link rel="stylesheet" type="text/css" href="/widget/nav/nav.css" />
+</head>
+<body>
+<div>
+  <div class="nav">
+    <ul>
+      <li><a>Link1</a></li>
+      <li><a>Link2</a></li>
+      <li><a>Link3</a></li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript" src="/static/js/mod.js"></script>
+<script type="text/javascript" src="/widget/lib/jquery.js"></script>
+<script type="text/javascript" src="/widget/nav/nav.js"></script>
+<script type="text/javascript">
+  var initNav = require('./nav.js');
+  initNav('div.nav');
+</script>
+</body>
+</html>
+```
+
 ### 目录规范
 
 制定目录规范可以降低项目的维护成本，所以每个解决方案应当预设一个合理的目录规范。以下目录规范仅作为参考。

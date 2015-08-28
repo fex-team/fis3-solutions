@@ -41,6 +41,9 @@ FIS3 解决方案规范定义
 
   ```
   @style()
+  div.clsA {
+    color: red;
+  }
   @endstyle
   ```
 * `@widget('子模板资源ID'[, localVars])`

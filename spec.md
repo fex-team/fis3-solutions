@@ -14,10 +14,35 @@ FIS3 解决方案规范定义
 
 语法格式可以因模板引擎不同而不同。以下语法规则仅供参考，但是标签名称应当保持一直。
 
-* `@load('静态资源ID'[, 'js' | 'css'])` 用来加载某一静态资源，通过 `静态资源ID` 指定。当该资源被加载的同时，如果存在资源依赖，所有其依赖的资源也应当被加载。
+* `@load('静态资源ID'[, 'js' | 'css'])` 用来加载某一静态资源，通过 `静态资源ID` 指定。当该资源被加载的同时，所有其依赖的资源也应当被加载。
+
+  ```
+  @load('static/libs/lib.js')
+  @load('static/scss/global.scss')
+  ```
 * `@uri` 用来获取某一资源的最终产出路径。
+  
+  ```
+  <div data-image="@uri('common:static/img/bg.png')"></div>
+  ```
 * `@script() js content @endscript` 与`html` 中 `<script></script>` 语法类似, 主要区别在于，通过此语法加载的 `script`, 会被收集到队列中，无论在模板什么位置使用，最终都会被合并在页面页脚处统一输出，自动性能优化。
+
+  ```
+  <p>xxxx</p>
+  @style()
+  var $ = require('/widget/jquery/jquery.js');
+
+  $(function() {
+    alert('Ready');
+  });
+  @endstyle
+  ```
 * `@style()@endstyle`  与`html` 中 `<style></style>` 语法类似, 主要区别在于，通过此语法加载的 `css`, 会被收集到队列中，无论在模板什么位置使用，最终都会被合并在页面头部统一输出，自动性能优化。
+
+  ```
+  @style()
+  @endstyle
+  ```
 * `@widget('子模板资源ID'[, localVars])`
   
   类似于各种模板引擎中的 `include` 功能，应当支持以下功能：
@@ -42,7 +67,7 @@ FIS3 解决方案规范定义
   ```
 * `@placeholder('类型')` 
 
-  后端框架需要把收集的 js 和 css 统一输出，同时为了支持[模块化开发](#模块化开发)，还需输出前端框架资源路径以及异步 js 模块资源表信息，那么具体输出在什么位置需要支持占位符来控制。
+  后端框架需要把收集的 js 和 css 统一输出，同时为了支持模块化开发，还需输出前端框架资源路径以及异步 js 模块资源表信息，那么具体输出在什么位置需要支持以下占位符来控制。
 
   * `@placeholder('js')` 用来控制收集到的 js 输出位置，一般都放在 body 前面。
   * `@placeholder('css')` 用来控制收集到的 css 输出位置，一般都放在 head 前面。
